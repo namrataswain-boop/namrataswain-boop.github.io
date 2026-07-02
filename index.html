@@ -1,498 +1,333 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Namrata Swain | Digital Marketer & Brand Strategist</title>
-    <!-- Tailwind CSS CDN for styling -->
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <!-- Font Awesome for sharp icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts: Sharp Plus Jakarta Sans -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
+    <title>Namrata Swain | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pink: '#FF69B4',
+                        darkBg: '#030303',
+                        cardBg: '#0A0A0A',
+                        borderBg: '#141414'
+                    }
+                }
+            }
+        }
+
+        // Toggle Education Dropdowns
+        function toggleEducation(id) {
+            const element = document.getElementById(id);
+            const icon = document.getElementById(id + '-icon');
+            if (element.classList.contains('hidden')) {
+                element.classList.remove('hidden');
+                icon.classList.add('rotate-180');
+            } else {
+                element.classList.add('hidden');
+                icon.classList.remove('rotate-180');
+            }
+        }
+
+        // Global Video Modal Trigger
+        function triggerVideoModal(title, url) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalIframe').src = url;
+            document.getElementById('videoModal').classList.remove('hidden');
+            document.getElementById('videoModal').classList.add('flex');
+        }
+
+        function closeModal() {
+            document.getElementById('videoModal').classList.add('hidden');
+            document.getElementById('videoModal').classList.remove('flex');
+            document.getElementById('modalIframe').src = '';
+        }
+    </script>
     <style>
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #050505;
-            color: #f3f4f6;
+        .hover-accent:hover {
+            color: #FF69B4 !important;
+            border-color: #FF69B4 !important;
         }
-        /* Custom neon pink highlights */
-        .text-pink { color: #FF69B4; }
-        .bg-pink { background-color: #FF69B4; }
-        .border-pink { border-color: #FF69B4; }
-        .hover-pink:hover { color: #FF1493; }
-        
-        /* Smooth, non-cringe view transitions */
-        .tab-content {
-            display: none;
-            opacity: 0;
-            transform: translateY(8px);
-            transition: opacity 0.3s ease, transform 0.3s ease;
+        .text-glow:hover {
+            text-shadow: 0 0 8px rgba(255, 105, 180, 0.6);
         }
-        .tab-content.active {
-            display: block;
-            opacity: 1;
-            transform: translateY(0);
-        }
-        /* Tight scrollbar */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #050505; }
-        ::-webkit-scrollbar-thumb { background: #222; border-radius: 3px; }
-        ::-webkit-scrollbar-thumb:hover { background: #FF69B4; }
     </style>
 </head>
-<body class="min-h-screen flex flex-col md:flex-row overflow-x-hidden">
+<body class="bg-darkBg text-gray-300 font-sans antialiased selection:bg-pink selection:text-black">
 
-    <!-- SIDEBAR NAVIGATION (Desktop) / TOP BAR (Mobile) -->
-    <nav class="w-full md:w-64 bg-[#0a0a0a] border-b md:border-b-0 md:border-r border-[#1a1a1a] p-4 flex flex-col justify-between shrink-0">
-        <div>
-            <!-- Identity -->
-            <div class="mb-6 p-2">
-                <h1 class="text-xl font-extrabold tracking-tight">NAMRATA<span class="text-pink">.</span></h1>
-                <p class="text-xs text-gray-400 font-medium">Digital Marketer & Strategist</p>
+    <!-- Header / Navigation -->
+    <header class="fixed top-0 left-0 w-full bg-darkBg/80 backdrop-blur-md z-40 border-b border-borderBg">
+        <div class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
+            <a href="#" class="text-white font-bold tracking-wider text-sm hover:text-pink transition-colors">NAMRATA SWAIN</a>
+            <nav class="flex space-x-6 text-xs uppercase tracking-widest font-semibold">
+                <a href="#about" class="text-gray-400 hover:text-pink transition-colors">About</a>
+                <a href="#experience" class="text-gray-400 hover:text-pink transition-colors">Experience</a>
+                <a href="#projects" class="text-gray-400 hover:text-pink transition-colors">Projects</a>
+                <a href="#skills" class="text-gray-400 hover:text-pink transition-colors">Skills</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Layout -->
+    <main class="max-w-6xl mx-auto px-4 pt-24 pb-16 grid grid-cols-1 lg:grid-cols-12 gap-8">
+        
+        <!-- Left Column: Profile Sticky Deck -->
+        <aside class="lg:col-span-4 lg:sticky lg:top-24 h-fit space-y-6">
+            <!-- Profile Info -->
+            <div class="bg-cardBg border border-borderBg rounded-2xl p-6 text-center group hover:border-pink transition-all duration-300">
+                <div class="w-32 h-32 mx-auto mb-4 bg-[#111] border border-borderBg rounded-xl flex items-center justify-center overflow-hidden group-hover:border-pink transition-colors">
+                    <!-- Placeholder: See step 2 of previous instructions to add image link -->
+                    <i class="fa-solid fa-user-tie text-4xl text-gray-600 group-hover:text-pink transition-colors"></i>
+                </div>
+                <h1 class="text-white font-bold text-xl group-hover:text-pink transition-colors">Namrata Swain</h1>
+                <p class="text-xs text-gray-500 mt-1">Management Trainee & Creative Producer</p>
+                
+                <div class="mt-4 pt-4 border-t border-borderBg flex justify-center space-x-4 text-gray-400">
+                    <a href="https://linkedin.com/in/Namrata_Swain" target="_blank" class="hover:text-pink transition-colors text-lg"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="mailto:namrataswain2@gmail.com" class="hover:text-pink transition-colors text-lg"><i class="fa-solid fa-envelope"></i></a>
+                </div>
             </div>
+
+            <!-- Quick Contacts Info Box -->
+            <div class="bg-cardBg border border-borderBg rounded-2xl p-5 space-y-3">
+                <h3 class="text-xs font-bold uppercase tracking-wider text-gray-400">Let's Connect</h3>
+                <div class="text-xs space-y-2">
+                    <div class="flex justify-between items-center group p-1 rounded hover:bg-darkBg transition-colors">
+                        <span class="text-gray-500">Email</span>
+                        <a href="mailto:namrataswain2@gmail.com" class="text-gray-300 group-hover:text-pink transition-colors">namrataswain2@gmail.com</a>
+                    </div>
+                    <div class="flex justify-between items-center group p-1 rounded hover:bg-darkBg transition-colors">
+                        <span class="text-gray-500">Location</span>
+                        <span class="text-gray-300 group-hover:text-pink transition-colors">Bhubaneswar, India</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Right Column: Scrolling Portfolio Sections -->
+        <section class="lg:col-span-8 space-y-12">
             
-            <!-- Navigation Links Links -->
-            <div class="space-y-1">
-                <button onclick="switchTab('home')" id="btn-home" class="tab-btn w-full text-left px-3 py-2 rounded-lg text-sm font-semibold flex items-center gap-3 bg-[#111] text-pink border border-[#222]">
-                    <i class="fa-solid fa-house w-4"></i> Home
-                </button>
-                <button onclick="switchTab('education')" id="btn-education" class="tab-btn w-full text-left px-3 py-2 rounded-lg text-sm font-semibold flex items-center gap-3 text-gray-400 hover:text-white hover:bg-[#111] transition-all">
-                    <i class="fa-solid fa-graduation-cap w-4"></i> Education
-                </button>
-                <button onclick="switchTab('experience')" id="btn-experience" class="tab-btn w-full text-left px-3 py-2 rounded-lg text-sm font-semibold flex items-center gap-3 text-gray-400 hover:text-white hover:bg-[#111] transition-all">
-                    <i class="fa-solid fa-briefcase w-4"></i> Experience
-                </button>
-                <button onclick="switchTab('projects')" id="btn-projects" class="tab-btn w-full text-left px-3 py-2 rounded-lg text-sm font-semibold flex items-center gap-3 text-gray-400 hover:text-white hover:bg-[#111] transition-all">
-                    <i class="fa-solid fa-folder-open w-4"></i> Projects
-                </button>
-                <button onclick="switchTab('skills')" id="btn-skills" class="tab-btn w-full text-left px-3 py-2 rounded-lg text-sm font-semibold flex items-center gap-3 text-gray-400 hover:text-white hover:bg-[#111] transition-all">
-                    <i class="fa-solid fa-screwdriver-wrench w-4"></i> Tools & Skills
-                </button>
-                <button onclick="switchTab('achievements')" id="btn-achievements" class="tab-btn w-full text-left px-3 py-2 rounded-lg text-sm font-semibold flex items-center gap-3 text-gray-400 hover:text-white hover:bg-[#111] transition-all">
-                    <i class="fa-solid fa-award w-4"></i> Credentials
-                </button>
-                <button onclick="switchTab('languages')" id="btn-languages" class="tab-btn w-full text-left px-3 py-2 rounded-lg text-sm font-semibold flex items-center gap-3 text-gray-400 hover:text-white hover:bg-[#111] transition-all">
-                    <i class="fa-solid fa-language w-4"></i> Languages
-                </button>
-                <button onclick="switchTab('offduty')" id="btn-offduty" class="tab-btn w-full text-left px-3 py-2 rounded-lg text-sm font-semibold flex items-center gap-3 text-gray-400 hover:text-white hover:bg-[#111] transition-all">
-                    <i class="fa-solid fa-clapperboard w-4"></i> Off-Duty (Hobbies)
-                </button>
-            </div>
-        </div>
-
-        <!-- Quick Contacts Footer Area -->
-        <div class="mt-6 pt-4 border-t border-[#1a1a1a] hidden md:block">
-            <div class="flex justify-around text-gray-400 text-base">
-                <a href="mailto:namrataswain2@gmail.com" class="hover:text-pink transition-colors" title="Email"><i class="fa-solid fa-envelope"></i></a>
-                <a href="https://linkedin.com/in/Namrata_Swain" target="_blank" class="hover:text-pink transition-colors" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-                <a href="tel:+919668571576" class="hover:text-pink transition-colors" title="Phone"><i class="fa-solid fa-phone"></i></a>
-                <button onclick="switchTab('achievements')" class="hover:text-pink transition-colors" title="Certificates"><i class="fa-solid fa-certificate"></i></button>
-            </div>
-        </div>
-    </nav>
-
-    <!-- MAIN APP CANVAS CONTAINER -->
-    <main class="flex-1 p-4 md:p-8 max-w-5xl overflow-y-auto">
-
-        <!-- 1. HOME TAB -->
-        <div id="home" class="tab-content active space-y-6">
-            <!-- Hero Grid Layout -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 bg-[#0a0a0a] p-4 rounded-xl border border-[#1a1a1a] items-center">
-                <!-- 3:4 Aspect Ratio Rectangle Frame -->
-                <div class="aspect-[3/4] w-full max-w-[200px] mx-auto bg-[#151515] rounded-lg border border-[#222] flex flex-col items-center justify-center p-4 relative group overflow-hidden">
-                    <i class="fa-solid fa-user-tie text-3xl text-gray-600 group-hover:text-pink transition-colors mb-2"></i>
-                    <p class="text-[10px] text-gray-500 text-center">3:4 Photo Frame Placeholder</p>
-                    <div class="absolute inset-0 border border-transparent group-hover:border-pink rounded-lg pointer-events-none transition-colors"></div>
-                </div>
-                <div class="md:col-span-2 space-y-3">
-                    <span class="text-xs font-bold uppercase tracking-wider bg-[#200e18] text-pink px-2.5 py-1 rounded-full border border-[#40122a]">Available for Opportunities</span>
-                    <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight">Namrata Swain</h2>
-                    <p class="text-sm text-pink font-semibold">Digital Marketing & Brand Strategist | IIM Shillong MBA</p>
-                    <p class="text-xs text-gray-400 leading-relaxed">
-                        An MBA graduate from IIM Shillong blending corporate strategy with creative digital execution. I focus on understanding consumer behavior to craft marketing narratives that connect, engage, and convert across the digital ecosystem.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Executive Summary -->
-            <div class="bg-[#0a0a0a] p-4 rounded-xl border border-[#1a1a1a] space-y-2">
-                <h3 class="text-xs font-bold uppercase text-pink tracking-widest">Executive Summary</h3>
-                <p class="text-xs text-gray-300 leading-relaxed">
-                    A multi-faceted marketer with hands-on experience driving audience architecture and deployment models. Well-versed in analyzing retail funnels, running autonomous direct-to-consumer digital workflows, and synchronizing creative cross-platform influencer initiatives to deliver measurable commercial metrics.
+            <!-- About Section -->
+            <div id="about" class="bg-cardBg border border-borderBg rounded-2xl p-6 hover:border-pink transition-all duration-300">
+                <h2 class="text-white text-base font-bold mb-3 flex items-center gap-2"><i class="fa-solid fa-user text-pink"></i> About Me</h2>
+                <p class="text-xs text-gray-400 leading-relaxed hover:text-gray-200 transition-colors">
+                    Versatile management professional blending analytical business strategy with multimedia creative production. Experienced in driving brand growth, optimization campaigns, and executing content frameworks that capture audience engagement.
                 </p>
             </div>
 
-            <!-- Quantitative Key Metrics Matrix -->
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                <div class="bg-gradient-to-br from-[#0a0a0a] to-[#12070e] p-4 rounded-xl border border-[#1a1a1a] hover:border-[#3a1528] transition-colors text-center sm:text-left">
-                    <p class="text-2xl font-black text-pink">8M+</p>
-                    <p class="text-[11px] text-gray-400 font-medium">Digital Impressions Tracked</p>
-                </div>
-                <div class="bg-gradient-to-br from-[#0a0a0a] to-[#12070e] p-4 rounded-xl border border-[#1a1a1a] hover:border-[#3a1528] transition-colors text-center sm:text-left">
-                    <p class="text-2xl font-black text-pink">20%</p>
-                    <p class="text-[11px] text-gray-400 font-medium">Max Audience Engagement Bump</p>
-                </div>
-                <div class="bg-gradient-to-br from-[#0a0a0a] to-[#12070e] p-4 rounded-xl border border-[#1a1a1a] hover:border-[#3a1528] transition-colors text-center sm:text-left">
-                    <p class="text-2xl font-black text-pink">12%</p>
-                    <p class="text-[11px] text-gray-400 font-medium">Campaign CTR Optimization</p>
-                </div>
-            </div>
-            
-            <!-- Quick Contact Form -->
-            <div class="bg-[#0a0a0a] p-5 rounded-xl border border-[#1a1a1a] space-y-4">
-                <h3 class="text-sm font-bold text-gray-200">Let's Connect</h3>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <input type="text" placeholder="Name" class="w-full bg-[#111] border border-[#222] text-xs p-2.5 rounded-lg focus:outline-none focus:border-pink text-white">
-                    <input type="email" placeholder="Email" class="w-full bg-[#111] border border-[#222] text-xs p-2.5 rounded-lg focus:outline-none focus:border-pink text-white">
-                </div>
-                <textarea rows="3" placeholder="Message" class="w-full bg-[#111] border border-[#222] text-xs p-2.5 rounded-lg focus:outline-none focus:border-pink text-white"></textarea>
-                <button class="bg-pink text-black font-bold text-xs px-4 py-2 rounded-lg hover:bg-[#ff85c2] transition-colors cursor-pointer">Send Message</button>
-            </div>
-        </div>
-
-        <!-- 2. EDUCATION TAB (Fun Tone) -->
-        <div id="education" class="tab-content space-y-4">
-            <h2 class="text-lg font-bold border-b border-[#1a1a1a] pb-2 text-pink">The Academic Framework</h2>
-            <div class="relative border-l border-[#1a1a1a] ml-2 pl-4 space-y-6">
-                <div class="relative">
-                    <div class="absolute -left-[21px] top-1.5 w-3 h-3 rounded-full bg-pink"></div>
-                    <div class="bg-[#0a0a0a] p-4 rounded-xl border border-[#1a1a1a] space-y-1">
-                        <span class="text-[10px] font-bold text-pink tracking-widest uppercase">Post-Graduation</span>
-                        <h3 class="text-sm font-bold text-white">Indian Institute of Management (IIM), Shillong</h3>
-                        <p class="text-xs text-gray-400">Master of Business Administration (MBA)</p>
-                        <p class="text-xs text-gray-300 italic pt-1 font-medium">
-                            "Where I survived rigorous corporate case-study gauntlets and perfected the dark art of turning chaotic market data rows into crisp visual consumer strategies."
-                        </p>
-                    </div>
-                </div>
-                <div class="relative">
-                    <div class="absolute -left-[21px] top-1.5 w-3 h-3 rounded-full bg-[#333]"></div>
-                    <div class="bg-[#0a0a0a] p-4 rounded-xl border border-[#1a1a1a] space-y-1">
-                        <span class="text-[10px] font-bold text-gray-500 tracking-widest uppercase">Under-Graduation</span>
-                        <h3 class="text-sm font-bold text-white">Odisha University of Agriculture and Technology</h3>
-                        <p class="text-xs text-gray-400">B.Sc. (Hons)</p>
-                        <p class="text-xs text-gray-300 italic pt-1 font-medium">
-                            "Built my foundational analytical muscles here. Discovered that parsing scientific data trends maps perfectly over to tracking consumer behavior funnels."
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 3. EXPERIENCE TAB (Formal tone preserved) -->
-        <div id="experience" class="tab-content space-y-4">
-            <h2 class="text-lg font-bold border-b border-[#1a1a1a] pb-2 text-pink">Professional Experience</h2>
-            
-            <!-- Grandink -->
-            <div class="bg-[#0a0a0a] p-4 rounded-xl border border-[#1a1a1a] space-y-2">
-                <div class="flex justify-between items-start">
-                    <div>
-                        <h3 class="text-sm font-bold text-white">Grandink</h3>
-                        <p class="text-xs text-pink">Marketing Intern</p>
-                    </div>
-                    <span class="text-[11px] bg-[#111] px-2 py-1 rounded border border-[#222] text-gray-400">May Art Campaign</span>
-                </div>
-                <ul class="text-xs text-gray-300 space-y-1.5 list-disc pl-4 leading-relaxed">
-                    <li>Led the creative execution and operational workflow for the May Art Campaign across the native web domain and active social handles.</li>
-                    <li>Managed end-to-end influencer marketing communications and social campaigns aligned directly with brand commercial tone.</li>
-                    <li>Analyzed e-commerce digital merchandising placements and category architecture to maximize organic product visibility.</li>
-                </ul>
-                <div class="pt-2 flex flex-wrap gap-2">
-                    <span class="text-[10px] font-semibold bg-[#151515] border border-[#222] px-2 py-0.5 rounded text-pink">10-12% MoM Sales Growth</span>
-                    <span class="text-[10px] font-semibold bg-[#151515] border border-[#222] px-2 py-0.5 rounded text-gray-400">8M Impressions</span>
-                </div>
-            </div>
-
-            <!-- Revarion Digital -->
-            <div class="bg-[#0a0a0a] p-4 rounded-xl border border-[#1a1a1a] space-y-2">
-                <div class="flex justify-between items-start">
-                    <div>
-                        <h3 class="text-sm font-bold text-white">Revarion Digital</h3>
-                        <p class="text-xs text-pink">Digital Marketing Intern</p>
-                    </div>
-                    <span class="text-[11px] bg-[#111] px-2 py-1 rounded border border-[#222] text-gray-400">Meta Accounts</span>
-                </div>
-                <ul class="text-xs text-gray-300 space-y-1.5 list-disc pl-4 leading-relaxed">
-                    <li>Coordinated digital branding content and customer retention messaging tracks across Meta platforms (Instagram & Facebook) for 3 B2B corporate entities.</li>
-                    <li>Executed weekly landscape benchmarking and competitive audits to optimize ad copy formats and target audience profiles.</li>
-                </ul>
-                <div class="pt-2 flex flex-wrap gap-2">
-                    <span class="text-[10px] font-semibold bg-[#151515] border border-[#222] px-2 py-0.5 rounded text-pink">+20% Brand Visibility</span>
-                    <span class="text-[10px] font-semibold bg-[#151515] border border-[#222] px-2 py-0.5 rounded text-gray-400">12% CTR Improvement</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- 4. PROJECTS TAB (Fun Clothing Label + Formal Audits) -->
-        <div id="projects" class="tab-content space-y-4">
-            <h2 class="text-lg font-bold border-b border-[#1a1a1a] pb-2 text-pink">Strategic Ventures & Audits</h2>
-            
-            <!-- Instagram Brand - Custom Playful Wording -->
-            <div class="bg-gradient-to-br from-[#0a0a0a] to-[#12050d] p-4 rounded-xl border border-pink/30 space-y-2">
-                <div class="flex justify-between items-start">
-                    <div>
-                        <span class="text-[9px] uppercase font-extrabold tracking-widest text-pink bg-[#2a0c1a] border border-pink/50 px-2 py-0.5 rounded">Founder Story</span>
-                        <h3 class="text-sm font-bold text-white mt-1">Independent Custom Clothing Label</h3>
-                        <p class="text-xs text-pink">Sole Founder & Creative Director (2022 – 2024)</p>
-                    </div>
-                </div>
-                <p class="text-xs text-gray-300 leading-relaxed font-medium italic">
-                    "Wore every single operational hat in existence—designer, textile wrangler, inventory packager, algorithms strategist, and customer therapist. Engineered our entire brand persona directly inside the Instagram native grid, scaled an organic tribe of 2,000+ active followers, and coordinated custom drop logistics across the map with an absolute zero advertising budget."
-                </p>
-                <div class="pt-1 flex flex-wrap gap-1.5 text-[10px] font-semibold text-gray-400">
-                    <span class="bg-[#111] border border-[#222] px-2 py-0.5 rounded">D2C Operations</span>
-                    <span class="bg-[#111] border border-[#222] px-2 py-0.5 rounded">Community Building</span>
-                    <span class="bg-[#111] border border-[#222] px-2 py-0.5 rounded">Zero-Dollar CAC</span>
-                </div>
-            </div>
-
-            <!-- Levi's Audit -->
-            <div class="bg-[#0a0a0a] p-4 rounded-xl border border-[#1a1a1a] space-y-1.5">
-                <h3 class="text-sm font-bold text-white">Levi’s Shillong Retail Funnel Audit</h3>
-                <p class="text-xs text-gray-400 leading-relaxed">
-                    Evaluated storefront operational bottlenecks leveraging data metrics mapping over a 250 weekly traffic run rate. Authored an optimization matrix utilizing direct qualitative insights gathered across 12 strategic stakeholder customer interviews to build out experiential store activations and leak-plugging CRM architectures.
-                </p>
-            </div>
-
-            <!-- Flipkart Blueprint -->
-            <div class="bg-[#0a0a0a] p-4 rounded-xl border border-[#1a1a1a] space-y-1.5">
-                <h3 class="text-sm font-bold text-white">Digital Marketplace Ecosystem Blueprint</h3>
-                <p class="text-xs text-gray-400 leading-relaxed">
-                    Deconstructed platform seller-onboarding velocity pipelines and visibility algorithms for Flipkart eMart ecosystem. Generated structural action models to clean structural onboarding drag and maximize digital shelf exposure indexes for regional MSME cohorts.
-                </p>
-            </div>
-        </div>
-
-        <!-- 5. TOOLS & SKILLS TAB (With Grayscale-to-Color Smooth Hover Interaction) -->
-        <div id="skills" class="tab-content space-y-6">
-            <h2 class="text-lg font-bold border-b border-[#1a1a1a] pb-2 text-pink">The Stack & Core Competencies</h2>
-            
-            <!-- Tool Engine Grid -->
-            <div class="space-y-3">
-                <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest">Platform Core Stacks (Hover to Activate)</h3>
-                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                    <!-- Tool 1: Google Ads -->
-                    <div class="bg-[#0a0a0a] border border-[#1a1a1a] p-3 rounded-xl flex flex-col items-center justify-center gap-2 group transition-all duration-300 transform hover:scale-105 hover:border-pink">
-                        <i class="fa-brands fa-google text-2xl text-gray-600 grayscale group-hover:grayscale-0 group-hover:text-[#4285F4] transition-all duration-300"></i>
-                        <span class="text-xs font-semibold text-gray-500 group-hover:text-white transition-colors">Google Ads</span>
-                    </div>
-                    <!-- Tool 2: GA4 -->
-                    <div class="bg-[#0a0a0a] border border-[#1a1a1a] p-3 rounded-xl flex flex-col items-center justify-center gap-2 group transition-all duration-300 transform hover:scale-105 hover:border-pink">
-                        <i class="fa-solid fa-chart-line text-2xl text-gray-600 grayscale group-hover:grayscale-0 group-hover:text-[#F2994A] transition-all duration-300"></i>
-                        <span class="text-xs font-semibold text-gray-500 group-hover:text-white transition-colors">Google Analytics 4</span>
-                    </div>
-                    <!-- Tool 3: Meta Business Suite -->
-                    <div class="bg-[#0a0a0a] border border-[#1a1a1a] p-3 rounded-xl flex flex-col items-center justify-center gap-2 group transition-all duration-300 transform hover:scale-105 hover:border-pink">
-                        <i class="fa-brands fa-meta text-2xl text-gray-600 grayscale group-hover:grayscale-0 group-hover:text-[#0668E1] transition-all duration-300"></i>
-                        <span class="text-xs font-semibold text-gray-500 group-hover:text-white transition-colors">Meta Ads Manager</span>
-                    </div>
-                    <!-- Tool 4: Amazon Central -->
-                    <div class="bg-[#0a0a0a] border border-[#1a1a1a] p-3 rounded-xl flex flex-col items-center justify-center gap-2 group transition-all duration-300 transform hover:scale-105 hover:border-pink">
-                        <i class="fa-brands fa-amazon text-2xl text-gray-600 grayscale group-hover:grayscale-0 group-hover:text-[#FF9900] transition-all duration-300"></i>
-                        <span class="text-xs font-semibold text-gray-500 group-hover:text-white transition-colors">Amazon Seller</span>
-                    </div>
-                    <!-- Tool 5: Flipkart Marketplace -->
-                    <div class="bg-[#0a0a0a] border border-[#1a1a1a] p-3 rounded-xl flex flex-col items-center justify-center gap-2 group transition-all duration-300 transform hover:scale-105 hover:border-pink">
-                        <i class="fa-solid fa-bag-shopping text-2xl text-gray-600 grayscale group-hover:grayscale-0 group-hover:text-[#2874F0] transition-all duration-300"></i>
-                        <span class="text-xs font-semibold text-gray-500 group-hover:text-white transition-colors">Flipkart Ads</span>
-                    </div>
-                    <!-- Tool 6: Excel -->
-                    <div class="bg-[#0a0a0a] border border-[#1a1a1a] p-3 rounded-xl flex flex-col items-center justify-center gap-2 group transition-all duration-300 transform hover:scale-105 hover:border-pink">
-                        <i class="fa-regular fa-file-excel text-2xl text-gray-600 grayscale group-hover:grayscale-0 group-hover:text-[#107C41] transition-all duration-300"></i>
-                        <span class="text-xs font-semibold text-gray-500 group-hover:text-white transition-colors">MS Excel Engine</span>
-                    </div>
-                    <!-- Tool 7: PowerPoint -->
-                    <div class="bg-[#0a0a0a] border border-[#1a1a1a] p-3 rounded-xl flex flex-col items-center justify-center gap-2 group transition-all duration-300 transform hover:scale-105 hover:border-pink">
-                        <i class="fa-regular fa-file-powerpoint text-2xl text-gray-600 grayscale group-hover:grayscale-0 group-hover:text-[#C43E1C] transition-all duration-300"></i>
-                        <span class="text-xs font-semibold text-gray-500 group-hover:text-white transition-colors">PowerPoint Strategy</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Marketing Competency Domains -->
-            <div class="space-y-2">
-                <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest">Functional Focus Areas</h3>
-                <div class="flex flex-wrap gap-2">
-                    <span class="bg-[#111] border border-[#222] px-3 py-1.5 text-xs rounded-full font-medium text-pink hover:border-pink/50 transition-colors">Brand Management</span>
-                    <span class="bg-[#111] border border-[#222] px-3 py-1.5 text-xs rounded-full font-medium text-white">Consumer Journey Mapping</span>
-                    <span class="bg-[#111] border border-[#222] px-3 py-1.5 text-xs rounded-full font-medium text-white">Social Media Engineering</span>
-                    <span class="bg-[#111] border border-[#222] px-3 py-1.5 text-xs rounded-full font-medium text-white">Competitor Landscape Benchmarking</span>
-                    <span class="bg-[#111] border border-[#222] px-3 py-1.5 text-xs rounded-full font-medium text-white">Integrated Growth Frameworks</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- 6. CREDENTIALS & ACHIEVEMENTS TAB (Keventers Link Included) -->
-        <div id="achievements" class="tab-content space-y-6">
-            <div>
-                <h2 class="text-lg font-bold border-b border-[#1a1a1a] pb-2 text-pink">Honors & Distinctions</h2>
-                <div class="mt-3 space-y-3">
-                    <!-- Keventers -->
-                    <div class="bg-[#0a0a0a] p-4 rounded-xl border border-[#1a1a1a] flex flex-col sm:flex-row justify-between sm:items-center gap-3">
+            <!-- Education Section with Toggles -->
+            <div id="education" class="space-y-4">
+                <h2 class="text-white text-base font-bold flex items-center gap-2 mb-2"><i class="fa-solid fa-graduation-cap text-pink"></i> Education</h2>
+                
+                <!-- MBA Card -->
+                <div onclick="toggleEducation('mba-grade')" class="bg-cardBg border border-borderBg rounded-xl p-4 cursor-pointer hover:border-pink transition-all duration-300 group">
+                    <div class="flex justify-between items-start">
                         <div>
-                            <span class="text-[9px] font-bold uppercase tracking-widest bg-pink/20 text-pink px-2 py-0.5 rounded">National Recognition</span>
-                            <h3 class="text-sm font-bold text-white mt-1">National Semi-finalist | India's Best Marketer</h3>
-                            <p class="text-xs text-gray-400">Awarded by Keventers India</p>
-                            <p class="text-xs text-gray-400 mt-1">Conducted and pitched a highly specialized personal branding growth framework on a national live evaluation deck.</p>
+                            <h3 class="text-sm font-bold text-white group-hover:text-pink transition-colors">MBA in Marketing & Strategy</h3>
+                            <p class="text-xs text-gray-500">Kiit School of Management, Bhubaneswar</p>
                         </div>
-                        <button onclick="triggerVideoModal('Keventers Pitch Video Deck', 'https://www.youtube.com/embed/dQw4w9WgXcQ')" class="sm:shrink-0 bg-pink text-black font-extrabold text-xs px-3 py-2 rounded-lg hover:bg-[#ff85c2] transition-colors flex items-center justify-center gap-2 cursor-pointer">
-                            <i class="fa-solid fa-circle-play"></i> Watch My Pitch Video
-                        </button>
+                        <div class="flex items-center gap-2 text-xs text-gray-400">
+                            <span>2022 - 2024</span>
+                            <i id="mba-grade-icon" class="fa-solid fa-chevron-down transition-transform duration-200 group-hover:text-pink"></i>
+                        </div>
                     </div>
-                    <!-- NTSE -->
-                    <div class="bg-[#0a0a0a] p-4 rounded-xl border border-[#1a1a1a]">
-                        <h3 class="text-sm font-bold text-white">National Talent Search Examination (NTSE) Scholar</h3>
-                        <p class="text-xs text-gray-400">Awarded by NCERT, Government of India for elite analytical talent benchmarks.</p>
+                    <div id="mba-grade" class="hidden mt-3 pt-3 border-t border-borderBg text-xs text-gray-400 space-y-1">
+                        <p>🏆 <span class="font-semibold text-white">Grade / CGPA:</span> 7.8 / 10</p>
+                        <p class="text-[11px] text-gray-500">Specialized in Strategic Brand Scaling, Digital Marketing Analytics, and Consumer Behaviour Layouts.</p>
+                    </div>
+                </div>
+
+                <!-- BBA Card -->
+                <div onclick="toggleEducation('bba-grade')" class="bg-cardBg border border-borderBg rounded-xl p-4 cursor-pointer hover:border-pink transition-all duration-300 group">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-sm font-bold text-white group-hover:text-pink transition-colors">Bachelor of Business Administration (BBA)</h3>
+                            <p class="text-xs text-gray-500">BJB Autonomous College</p>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-gray-400">
+                            <span>2019 - 2022</span>
+                            <i id="bba-grade-icon" class="fa-solid fa-chevron-down transition-transform duration-200 group-hover:text-pink"></i>
+                        </div>
+                    </div>
+                    <div id="bba-grade" class="hidden mt-3 pt-3 border-t border-borderBg text-xs text-gray-400 space-y-1">
+                        <p>🏆 <span class="font-semibold text-white">Grade / Percentage:</span> 74%</p>
+                        <p class="text-[11px] text-gray-500">Foundational studies in Financial Accounting, Human Resource Frameworks, and Corporate Marketing Ecosystems.</p>
+                    </div>
+                </div>
+
+                <!-- 12th Grade Card -->
+                <div onclick="toggleEducation('twelfth-grade')" class="bg-cardBg border border-borderBg rounded-xl p-4 cursor-pointer hover:border-pink transition-all duration-300 group">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-sm font-bold text-white group-hover:text-pink transition-colors">Higher Secondary Education (12th Grade)</h3>
+                            <p class="text-xs text-gray-500">CHSE Odisha Board</p>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-gray-400">
+                            <span>2017 - 2019</span>
+                            <i id="twelfth-grade-icon" class="fa-solid fa-chevron-down transition-transform duration-200 group-hover:text-pink"></i>
+                        </div>
+                    </div>
+                    <div id="twelfth-grade" class="hidden mt-3 pt-3 border-t border-borderBg text-xs text-gray-400 space-y-1">
+                        <p>🏆 <span class="font-semibold text-white">Result / Percentage:</span> 78%</p>
+                        <p class="text-[11px] text-gray-500">Focused tracks in Commerce, Business Mathematics, Accountancy, and Management Principles.</p>
+                    </div>
+                </div>
+
+                <!-- 10th Grade Card -->
+                <div onclick="toggleEducation('tenth-grade')" class="bg-cardBg border border-borderBg rounded-xl p-4 cursor-pointer hover:border-pink transition-all duration-300 group">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-sm font-bold text-white group-hover:text-pink transition-colors">Secondary School Certification (10th Grade)</h3>
+                            <p class="text-xs text-gray-500">BSE Odisha Board</p>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-gray-400">
+                            <span>2017</span>
+                            <i id="tenth-grade-icon" class="fa-solid fa-chevron-down transition-transform duration-200 group-hover:text-pink"></i>
+                        </div>
+                    </div>
+                    <div id="tenth-grade" class="hidden mt-3 pt-3 border-t border-borderBg text-xs text-gray-400 space-y-1">
+                        <p>🏆 <span class="font-semibold text-white">Result / CGPA:</span> 8.2 / 10</p>
+                        <p class="text-[11px] text-gray-500">General academic coursework with distinctions in Creative Arts and Social Sciences.</p>
                     </div>
                 </div>
             </div>
 
-            <div>
-                <h2 class="text-lg font-bold border-b border-[#1a1a1a] pb-2 text-white">Strategic Certifications</h2>
-                <div class="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-3">
-                    <div class="bg-[#0a0a0a] p-3 rounded-xl border border-[#1a1a1a] flex flex-col justify-between items-start">
-                        <h3 class="text-xs font-bold text-gray-200">Content Marketing Frameworks</h3>
-                        <span class="text-[10px] text-pink font-semibold mt-1">HubSpot Verified</span>
-                        <a href="https://hubspot.com" target="_blank" class="text-[10px] text-gray-500 hover:text-pink transition-colors mt-2 flex items-center gap-1">Verify Credential <i class="fa-solid fa-arrow-up-right-from-square text-[8px]"></i></a>
+            <!-- Experience Section -->
+            <div id="experience" class="space-y-4">
+                <h2 class="text-white text-base font-bold flex items-center gap-2 mb-2"><i class="fa-solid fa-briefcase text-pink"></i> Professional Experience</h2>
+                
+                <!-- Role 1 -->
+                <div class="bg-cardBg border border-borderBg rounded-xl p-5 hover:border-pink transition-all duration-300 group">
+                    <div class="flex justify-between text-xs mb-2">
+                        <span class="text-white font-bold text-sm group-hover:text-pink transition-colors">Management Trainee Intern</span>
+                        <span class="text-gray-500">May 2023 - July 2023</span>
                     </div>
-                    <div class="bg-[#0a0a0a] p-3 rounded-xl border border-[#1a1a1a] flex flex-col justify-between items-start">
-                        <h3 class="text-xs font-bold text-gray-200">Accounting Fundamentals</h3>
-                        <span class="text-[10px] text-pink font-semibold mt-1">Corporate Finance Institute (CFI)</span>
-                        <a href="https://corporatefinanceinstitute.com" target="_blank" class="text-[10px] text-gray-500 hover:text-pink transition-colors mt-2 flex items-center gap-1">Verify Credential <i class="fa-solid fa-arrow-up-right-from-square text-[8px]"></i></a>
+                    <p class="text-xs font-semibold text-pink mb-3">Keventers Milkshake Portfolio</p>
+                    <ul class="text-[11px] text-gray-400 space-y-2 list-disc list-inside">
+                        <li class="hover:text-white transition-colors">Conducted end-to-end B2B market mapping and consumer sentiment auditing across urban hubs.</li>
+                        <li class="hover:text-white transition-colors">Spearheaded operational visibility blueprints that augmented regional distributor acquisition rates by <span class="group-hover:text-pink font-semibold transition-colors">12%</span>.</li>
+                        <li class="hover:text-white transition-colors">Assembled strategic product pitch decks for corporate presentations to executive stakeholders.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Projects Section -->
+            <div id="projects" class="space-y-4">
+                <h2 class="text-white text-base font-bold flex items-center gap-2 mb-2"><i class="fa-solid fa-folder-open text-pink"></i> Featured Projects & Media</h2>
+                
+                <!-- Main Pitch Deck Card -->
+                <div onclick="triggerVideoModal('Keventers Pitch Video Deck', 'https://www.youtube.com/embed/dQw4w9WgXcQ')" 
+                     class="bg-cardBg border border-borderBg rounded-xl p-5 cursor-pointer transform hover:-translate-y-2 hover:border-pink hover:shadow-[0_10px_20px_rgba(255,105,180,0.1)] transition-all duration-300 group flex items-center justify-between">
+                    <div class="space-y-1">
+                        <span class="text-[10px] uppercase font-bold tracking-wider text-pink">Corporate Deck</span>
+                        <h3 class="text-sm font-bold text-white group-hover:text-pink transition-colors">Keventers Market Scaling Strategy Pitch</h3>
+                        <p class="text-xs text-gray-500">Interactive multimedia data visualization breakdown.</p>
                     </div>
-                    <div class="bg-[#0a0a0a] p-3 rounded-xl border border-[#1a1a1a] flex flex-col justify-between items-start">
-                        <h3 class="text-xs font-bold text-gray-200">Reading Financial Statements</h3>
-                        <span class="text-[10px] text-pink font-semibold mt-1">Corporate Finance Institute (CFI)</span>
-                        <a href="https://corporatefinanceinstitute.com" target="_blank" class="text-[10px] text-gray-500 hover:text-pink transition-colors mt-2 flex items-center gap-1">Verify Credential <i class="fa-solid fa-arrow-up-right-from-square text-[8px]"></i></a>
+                    <div class="w-10 h-10 rounded-full bg-darkBg border border-borderBg flex items-center justify-center group-hover:bg-pink group-hover:text-black transition-colors">
+                        <i class="fa-solid fa-play text-xs text-pink group-hover:text-black ml-0.5"></i>
+                    </div>
+                </div>
+
+                <!-- Grid Layout for Off-Duty Hobbies Content -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <!-- Hobby 1 -->
+                    <div onclick="triggerVideoModal('Catching Beats Snippet', 'https://www.youtube.com/embed/dQw4w9WgXcQ')"
+                         class="bg-cardBg border border-borderBg rounded-xl p-4 cursor-pointer transform hover:-translate-y-2 hover:border-pink transition-all duration-300 group text-center space-y-2">
+                        <div class="w-8 h-8 mx-auto rounded-lg bg-darkBg flex items-center justify-center group-hover:bg-pink group-hover:text-black transition-colors">
+                            <i class="fa-solid fa-drum text-pink group-hover:text-black text-xs"></i>
+                        </div>
+                        <h4 class="text-xs font-bold text-white group-hover:text-pink transition-colors">Catching Beats</h4>
+                        <p class="text-[10px] text-gray-500">Audio rhythm synchronization projects.</p>
+                    </div>
+
+                    <!-- Hobby 2 -->
+                    <div onclick="triggerVideoModal('Video Production Showcase', 'https://www.youtube.com/embed/dQw4w9WgXcQ')"
+                         class="bg-cardBg border border-borderBg rounded-xl p-4 cursor-pointer transform hover:-translate-y-2 hover:border-pink transition-all duration-300 group text-center space-y-2">
+                        <div class="w-8 h-8 mx-auto rounded-lg bg-darkBg flex items-center justify-center group-hover:bg-pink group-hover:text-black transition-colors">
+                            <i class="fa-solid fa-clapperboard text-pink group-hover:text-black text-xs"></i>
+                        </div>
+                        <h4 class="text-xs font-bold text-white group-hover:text-pink transition-colors">Video Creation</h4>
+                        <p class="text-[10px] text-gray-500">Creative editing blueprints and pacing.</p>
+                    </div>
+
+                    <!-- Hobby 3 -->
+                    <div onclick="triggerVideoModal('Vlog Compilation Layout', 'https://www.youtube.com/embed/dQw4w9WgXcQ')"
+                         class="bg-cardBg border border-borderBg rounded-xl p-4 cursor-pointer transform hover:-translate-y-2 hover:border-pink transition-all duration-300 group text-center space-y-2">
+                        <div class="w-8 h-8 mx-auto rounded-lg bg-darkBg flex items-center justify-center group-hover:bg-pink group-hover:text-black transition-colors">
+                            <i class="fa-solid fa-camera text-pink group-hover:text-black text-xs"></i>
+                        </div>
+                        <h4 class="text-xs font-bold text-white group-hover:text-pink transition-colors">Vlogging & Cuts</h4>
+                        <p class="text-[10px] text-gray-500">Daily life capture sequences and formats.</p>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- 7. LANGUAGES TAB (Playful Interactive Modals) -->
-        <div id="languages" class="tab-content space-y-4">
-            <h2 class="text-lg font-bold border-b border-[#1a1a1a] pb-2 text-pink">Linguistic Competence Profile</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <!-- English -->
-                <div class="bg-[#0a0a0a] p-4 rounded-xl border border-[#1a1a1a] flex items-center justify-between">
-                    <div>
-                        <h3 class="text-sm font-bold text-white">English</h3>
-                        <p class="text-xs text-pink italic mt-0.5">"Completely fluent in corporate analytics, technical sync-ups, and native sarcasm."</p>
+            <!-- Skills & Languages Section -->
+            <div id="skills" class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <!-- Skill Deck -->
+                <div class="bg-cardBg border border-borderBg rounded-2xl p-5 hover:border-pink transition-all duration-300 group">
+                    <h3 class="text-white text-xs font-bold uppercase tracking-wider mb-4 flex items-center gap-2"><i class="fa-solid fa-screwdriver-wrench text-pink"></i> Skills</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-[11px] bg-darkBg px-2.5 py-1 rounded-md border border-borderBg text-gray-400 hover:border-pink hover:text-pink transition-all duration-200">Brand Strategy</span>
+                        <span class="text-[11px] bg-darkBg px-2.5 py-1 rounded-md border border-borderBg text-gray-400 hover:border-pink hover:text-pink transition-all duration-200">Data Analytics</span>
+                        <span class="text-[11px] bg-darkBg px-2.5 py-1 rounded-md border border-borderBg text-gray-400 hover:border-pink hover:text-pink transition-all duration-200">Video Editing</span>
+                        <span class="text-[11px] bg-darkBg px-2.5 py-1 rounded-md border border-borderBg text-gray-400 hover:border-pink hover:text-pink transition-all duration-200">Pitch Decks</span>
+                        <span class="text-[11px] bg-darkBg px-2.5 py-1 rounded-md border border-borderBg text-gray-400 hover:border-pink hover:text-pink transition-all duration-200 flex items-center gap-1">
+                            <i class="fa-solid fa-palette text-[10px]"></i> Canva
+                        </span>
                     </div>
-                    <button onclick="triggerVideoModal('English Fluency Demo', 'https://www.youtube.com/embed/dQw4w9WgXcQ')" class="bg-[#111] border border-[#222] p-2 rounded-lg text-gray-400 hover:text-pink hover:border-pink transition-colors cursor-pointer" title="Listen to audio/video clip">
-                        <i class="fa-solid fa-volume-high"></i>
-                    </button>
                 </div>
-                <!-- Hindi -->
-                <div class="bg-[#0a0a0a] p-4 rounded-xl border border-[#1a1a1a] flex items-center justify-between">
-                    <div>
-                        <h3 class="text-sm font-bold text-white">Hindi</h3>
-                        <p class="text-xs text-gray-400 italic mt-0.5">"Full operational mastery. Can navigate high-stakes vendor negotiations seamlessly."</p>
+
+                <!-- Languages Deck -->
+                <div class="bg-cardBg border border-borderBg rounded-2xl p-5 hover:border-pink transition-all duration-300 group">
+                    <h3 class="text-white text-xs font-bold uppercase tracking-wider mb-4 flex items-center gap-2"><i class="fa-solid fa-language text-pink"></i> Languages</h3>
+                    <div class="space-y-2 text-xs">
+                        <div class="flex justify-between hover:text-pink transition-colors">
+                            <span class="text-gray-400 font-semibold group-hover:text-gray-200 transition-colors">English</span>
+                            <span class="text-gray-500 text-[11px]">Professional</span>
+                        </div>
+                        <div class="flex justify-between hover:text-pink transition-colors">
+                            <span class="text-gray-400 font-semibold group-hover:text-gray-200 transition-colors">Hindi</span>
+                            <span class="text-gray-500 text-[11px]">Conversational</span>
+                        </div>
+                        <div class="flex justify-between hover:text-pink transition-colors">
+                            <span class="text-gray-400 font-semibold group-hover:text-gray-200 transition-colors">Odia</span>
+                            <span class="text-gray-500 text-[11px]">Native</span>
+                        </div>
                     </div>
-                    <button onclick="triggerVideoModal('Hindi Conversational Clip', 'https://www.youtube.com/embed/dQw4w9WgXcQ')" class="bg-[#111] border border-[#222] p-2 rounded-lg text-gray-400 hover:text-pink hover:border-pink transition-colors cursor-pointer" title="Listen to audio/video clip">
-                        <i class="fa-solid fa-volume-high"></i>
-                    </button>
                 </div>
             </div>
-        </div>
 
-        <!-- 8. OFF-DUTY TAB (Hobby Video Grid Elements) -->
-        <div id="offduty" class="tab-content space-y-4">
-            <h2 class="text-lg font-bold border-b border-[#1a1a1a] pb-2 text-pink">Off-Duty Work | Creative Side-Quests</h2>
-            <p class="text-xs text-gray-400">A glimpse into life outside the analytical metrics funnels.</p>
-            
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <!-- Hobby Card 1 -->
-                <div class="bg-[#0a0a0a] border border-[#1a1a1a] rounded-xl p-3 space-y-2 group hover:border-pink transition-colors">
-                    <div onclick="triggerVideoModal('Catching Beats Snippet', 'https://www.youtube.com/embed/dQw4w9WgXcQ')" class="aspect-video w-full bg-[#151515] rounded-lg border border-[#222] flex items-center justify-center cursor-pointer relative overflow-hidden group">
-                        <i class="fa-solid fa-play text-xl text-gray-600 group-hover:text-pink group-hover:scale-110 transition-all"></i>
-                        <div class="absolute inset-0 bg-pink/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            <!-- Certifications Section -->
+            <div class="bg-cardBg border border-borderBg rounded-2xl p-5 hover:border-pink transition-all duration-300 group">
+                <h3 class="text-white text-xs font-bold uppercase tracking-wider mb-3 flex items-center gap-2"><i class="fa-solid fa-award text-pink"></i> Certifications</h3>
+                <div class="text-xs space-y-2">
+                    <div class="p-2 bg-darkBg/50 border border-borderBg rounded-lg hover:border-pink transition-colors group/cert">
+                        <p class="font-bold text-gray-300 group-hover/cert:text-pink transition-colors">Google Digital Marketing Ecosystems</p>
+                        <p class="text-[10px] text-gray-500">Issued via Google Digital Garage Accounts</p>
                     </div>
-                    <h3 class="text-xs font-bold text-white">Catching Beats</h3>
-                    <p class="text-[11px] text-gray-400">Exploring music synthesis, rhythmic audio trends, and soundscapes.</p>
-                </div>
-                <!-- Hobby Card 2 -->
-                <div class="bg-[#0a0a0a] border border-[#1a1a1a] rounded-xl p-3 space-y-2 group hover:border-pink transition-colors">
-                    <div onclick="triggerVideoModal('Creative Ventures Preview', 'https://www.youtube.com/embed/dQw4w9WgXcQ')" class="aspect-video w-full bg-[#151515] rounded-lg border border-[#222] flex items-center justify-center cursor-pointer relative overflow-hidden group">
-                        <i class="fa-solid fa-play text-xl text-gray-600 group-hover:text-pink group-hover:scale-110 transition-all"></i>
-                        <div class="absolute inset-0 bg-pink/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                    </div>
-                    <h3 class="text-xs font-bold text-white">Visual Design Experiments</h3>
-                    <p class="text-[11px] text-gray-400">Sketching, fashion illustrations, and digital mood board compositions.</p>
-                </div>
-                <!-- Hobby Card 3 -->
-                <div class="bg-[#0a0a0a] border border-[#1a1a1a] rounded-xl p-3 space-y-2 group hover:border-pink transition-colors">
-                    <div onclick="triggerVideoModal('Life Outside the Funnel Log', 'https://www.youtube.com/embed/dQw4w9WgXcQ')" class="aspect-video w-full bg-[#151515] rounded-lg border border-[#222] flex items-center justify-center cursor-pointer relative overflow-hidden group">
-                        <i class="fa-solid fa-play text-xl text-gray-600 group-hover:text-pink group-hover:scale-110 transition-all"></i>
-                        <div class="absolute inset-0 bg-pink/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                    </div>
-                    <h3 class="text-xs font-bold text-white">Exploring Locales</h3>
-                    <p class="text-[11px] text-gray-400">Documenting architecture, design spaces, and coffee cultures.</p>
                 </div>
             </div>
-        </div>
 
+        </section>
     </main>
 
-    <!-- UNIFIED NATIVE VIDEO POPUP MODAL ARCHITECTURE -->
-    <div id="videoModal" class="fixed inset-0 bg-black/90 hidden items-center justify-center z-50 p-4 backdrop-blur-sm">
-        <div class="bg-[#0a0a0a] border border-[#222] w-full max-w-2xl rounded-xl overflow-hidden shadow-2xl relative">
-            <div class="p-3 border-b border-[#1a1a1a] flex justify-between items-center bg-[#070707]">
-                <h3 id="modalTitle" class="text-xs font-bold text-pink uppercase tracking-wider">Video Sandbox Content</h3>
-                <button onclick="closeVideoModal()" class="text-gray-500 hover:text-white transition-colors text-sm cursor-pointer px-1"><i class="fa-solid fa-xmark"></i></button>
+    <!-- Global Floating Video Overlay Modal Context -->
+    <div id="videoModal" class="fixed inset-0 bg-black/90 hidden items-center justify-center z-50 p-4 transition-all duration-300">
+        <div class="bg-[#050505] border border-borderBg w-full max-w-2xl rounded-2xl overflow-hidden relative">
+            <div class="p-4 border-b border-borderBg flex justify-between items-center">
+                <h3 id="modalTitle" class="text-xs uppercase font-bold text-white tracking-widest">Video Stream</h3>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-pink transition-colors text-sm"><i class="fa-solid fa-xmark"></i></button>
             </div>
-            <!-- Embedded Aspect-Video Window Frame -->
-            <div class="aspect-video w-full bg-black">
-                <iframe id="modalIframe" src="" class="w-full h-full" allowfullscreen allow="autoplay"></iframe>
-            </div>
-            <div class="p-2 bg-[#070707] text-center">
-                <p class="text-[10px] text-gray-500 italic">Replace the default placeholder embedding URLs with your YouTube video links.</p>
+            <div class="aspect-video w-full">
+                <iframe id="modalIframe" src="" class="w-full h-full" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
         </div>
     </div>
 
-    <!-- UI ROUTER LOGIC SCRIPT -->
-    <script>
-        function switchTab(tabId) {
-            // Deactivate all screens safely
-            document.querySelectorAll('.tab-content').forEach(content => {
-                content.classList.remove('active');
-            });
-            // Untag navigation states
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.className = "tab-btn w-full text-left px-3 py-2 rounded-lg text-sm font-semibold flex items-center gap-3 text-gray-400 hover:text-white hover:bg-[#111] transition-all";
-            });
-
-            // Route execution
-            const targetContent = document.getElementById(tabId);
-            if(targetContent) {
-                targetContent.classList.add('active');
-            }
-            
-            const targetButton = document.getElementById(`btn-${tabId}`);
-            if(targetButton) {
-                targetButton.className = "tab-btn w-full text-left px-3 py-2 rounded-lg text-sm font-semibold flex items-center gap-3 bg-[#111] text-pink border border-[#222]";
-            }
-            
-            // Auto-scroll back up top for seamless mobile user shifts
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // Modal triggers
-        function triggerVideoModal(title, embedUrl) {
-            document.getElementById('modalTitle').innerText = title.toUpperCase();
-            document.getElementById('modalIframe').src = embedUrl;
-            document.getElementById('videoModal').style.display = 'flex';
-        }
-
-        function closeVideoModal() {
-            document.getElementById('videoModal').style.display = 'none';
-            document.getElementById('modalIframe').src = ''; // Flush player state
-        }
-    </script>
 </body>
 </html>
