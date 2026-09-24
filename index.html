@@ -1,154 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Namrata Swain | Portfolio</title>
-    <script src="[cdn.tailwindcss.com](https://cdn.tailwindcss.com)"></script>
-    <script src="[unpkg.com](https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js)"></script>
-    <script src="[cdn.jsdelivr.net](https://cdn.jsdelivr.net/npm/lucide-static@0.321.0/font/lucide.min.css)"></script>
-    <style>
-        body { background-color: #000; color: white; overflow: hidden; font-family: 'Inter', sans-serif; }
-        .pink-gradient { background: linear-gradient(180deg, rgba(255,20,147,0.2) 0%, rgba(0,0,0,1) 100%); }
-        .card-shadow { box-shadow: 0 10px 30px -5px rgba(255, 20, 147, 0.3); }
-        .glass { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .swiping-card { touch-action: none; position: absolute; width: 100%; height: 100%; transition: transform 0.1s; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mainframe - Eye Tracker</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background-color: #0d0d0d;
+      color: #ffffff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    h1 {
+      margin-bottom: 5px;
+      font-size: 28px;
+      letter-spacing: -1px;
+    }
+
+    p {
+      color: #a1a1aa;
+      margin-top: 0;
+      margin-bottom: 25px;
+      font-size: 14px;
+    }
+
+    /* Container for the character image */
+    .character-wrapper {
+      position: relative;
+      width: 320px;
+      height: 560px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Your character image */
+    .character-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Overlay container positioned directly over the eyes */
+    .eyes-layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    /* Eye socket styling and placement */
+    .eye {
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Left Eye Position on the character */
+    .eye.left {
+      top: 30.5%;
+      left: 44.5%;
+    }
+
+    /* Right Eye Position on the character */
+    .eye.right {
+      top: 30.5%;
+      left: 54.5%;
+    }
+
+    /* Pupil dot that moves with the cursor */
+    .pupil {
+      width: 8px;
+      height: 8px;
+      background-color: #1a0d00;
+      border-radius: 50%;
+      position: absolute;
+      transition: transform 0.04s ease-out;
+    }
+  </style>
 </head>
-<body class="flex items-center justify-center h-screen w-screen p-4">
+<body>
 
-    <!-- Mode Toggle -->
-    <div class="fixed top-6 z-50 flex items-center bg-zinc-900 rounded-full p-1 border border-pink-500/30">
-        <button id="swipeMode" class="px-4 py-1 rounded-full bg-pink-600 text-sm font-bold transition-all">Dating Style</button>
-        <button id="recruitMode" class="px-4 py-1 rounded-full text-zinc-400 text-sm font-bold transition-all">Recruiter View</button>
+  <h1>Mainframe®</h1>
+  <p>Move your mouse around to see her follow your cursor</p>
+
+  <div class="character-wrapper">
+    <!-- Make sure your character image is saved in the same folder as "character.png" -->
+    <img src="character.png" alt="Character" class="character-img">
+    
+    <!-- Transparent eyes tracking layer -->
+    <div class="eyes-layer">
+      <div class="eye left"><div class="pupil"></div></div>
+      <div class="eye right"><div class="pupil"></div></div>
     </div>
+  </div>
 
-    <!-- Main Container -->
-    <div id="app-container" class="relative w-full max-w-md h-[80vh] bg-zinc-950 rounded-[2rem] overflow-hidden border-4 border-zinc-900 card-shadow">
-        
-        <!-- Swiping Interface -->
-        <div id="swipe-stack" class="relative w-full h-full">
-            
-            <!-- Card 4: Contact & Analytics (Bottom) -->
-            <div class="swiping-card glass p-8 flex flex-col justify-between" style="z-index: 10;">
-                <div>
-                    <h2 class="text-3xl font-black text-pink-500 mb-4">Let's Connect</h2>
-                    <p class="text-zinc-400 mb-6">Send a message directly to my inbox.</p>
-                    <form action="mailto:your-email@iimshillong.ac.in" method="post" enctype="text/plain" class="space-y-4">
-                        <input type="text" placeholder="Your Name" class="w-full bg-zinc-900 border border-pink-500/30 p-3 rounded-xl focus:outline-none focus:border-pink-500">
-                        <textarea placeholder="Your Message" class="w-full bg-zinc-900 border border-pink-500/30 p-3 rounded-xl h-24 focus:outline-none focus:border-pink-500"></textarea>
-                        <button type="submit" class="w-full bg-pink-600 font-bold py-3 rounded-xl hover:bg-pink-500 transition-colors">Send message</button>
-                    </form>
-                </div>
-                <div class="flex justify-around text-pink-500 text-2xl pt-4">
-                    <a href="#">LinkedIn</a>
-                    <a href="#">IG</a>
-                    <a href="#">Twitter</a>
-                </div>
-            </div>
+  <script>
+    const pupils = document.querySelectorAll('.pupil');
 
-            <!-- Card 3: Skills & Projects -->
-            <div class="swiping-card glass p-6 overflow-y-auto" style="z-index: 20;">
-                <h2 class="text-2xl font-bold text-pink-500 mb-4">Strategic Toolkit</h2>
-                <div class="grid grid-cols-2 gap-3 mb-6">
-                    <div class="p-3 bg-pink-900/20 border border-pink-500/30 rounded-lg text-xs">Brand Positioning</div>
-                    <div class="p-3 bg-pink-900/20 border border-pink-500/30 rounded-lg text-xs">Consumer Insights</div>
-                    <div class="p-3 bg-pink-900/20 border border-pink-500/30 rounded-lg text-xs">Digital Growth</div>
-                    <div class="p-3 bg-pink-900/20 border border-pink-500/30 rounded-lg text-xs">GTM Strategy</div>
-                </div>
-                <h2 class="text-2xl font-bold text-pink-500 mb-4">Top Achievements</h2>
-                <div class="space-y-3">
-                    <div class="p-4 bg-zinc-900 rounded-xl border-l-4 border-pink-500">
-                        <p class="font-bold text-sm">Winning National Case Study</p>
-                        <p class="text-xs text-zinc-500">IIM Shillong Flagship Event</p>
-                    </div>
-                </div>
-            </div>
+    window.addEventListener('mousemove', (e) => {
+      pupils.forEach((pupil) => {
+        // Calculate the center point of each eye
+        const rect = pupil.getBoundingClientRect();
+        const eyeX = rect.left + rect.width / 2;
+        const eyeY = rect.top + rect.height / 2;
 
-            <!-- Card 2: Interactive Grid -->
-            <div class="swiping-card bg-zinc-900 p-6" style="z-index: 30;">
-                <h2 class="text-pink-500 text-sm font-bold tracking-widest uppercase mb-4">The Breakdown</h2>
-                <div class="grid grid-cols-2 gap-4 h-3/4">
-                    <button class="bg-zinc-800 rounded-2xl flex flex-col items-center justify-center p-4 border border-zinc-700 hover:border-pink-500 transition-all">
-                        <span class="text-xs font-bold text-pink-400">Education</span>
-                    </button>
-                    <button class="bg-zinc-800 rounded-2xl flex flex-col items-center justify-center p-4 border border-zinc-700 hover:border-pink-500 transition-all">
-                        <span class="text-xs font-bold text-pink-400">Experience</span>
-                    </button>
-                    <button class="bg-zinc-800 rounded-2xl flex flex-col items-center justify-center p-4 border border-zinc-700 hover:border-pink-500 transition-all">
-                        <span class="text-xs font-bold text-pink-400">Projects</span>
-                    </button>
-                    <button class="bg-zinc-800 rounded-2xl flex flex-col items-center justify-center p-4 border border-zinc-700 hover:border-pink-500 transition-all">
-                        <span class="text-xs font-bold text-pink-400">Hobbies</span>
-                    </button>
-                </div>
-                <p class="text-center text-zinc-500 text-xs mt-6">Swipe to see more →</p>
-            </div>
+        // Find angle between cursor and eye
+        const angle = Math.atan2(e.clientY - eyeY, e.clientX - eyeX);
+        const distance = 4; // Maximum pixels the pupil can shift
 
-            <!-- Card 1: Main Intro -->
-            <div id="first-card" class="swiping-card relative bg-cover bg-center flex flex-col justify-end p-8" style="z-index: 40; background-image: url('[images.unsplash.com](https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80)');">
-                <div class="absolute inset-0 pink-gradient"></div>
-                <div class="relative z-10">
-                    <h1 class="text-4xl font-extrabold leading-tight">Namrata Swain</h1>
-                    <p class="text-pink-400 font-medium text-lg">Marketing & Brand Strategist</p>
-                    <div class="flex items-center gap-2 mt-2 text-zinc-300">
-                        <span class="bg-white/10 px-2 py-1 rounded text-xs uppercase tracking-tighter">IIM Shillong</span>
-                    </div>
-                </div>
-            </div>
+        // Move pupil towards the cursor angle
+        const x = Math.cos(angle) * distance;
+        const y = Math.sin(angle) * distance;
 
-        </div>
-    </div>
-
-    <!-- UI Overlay Controls -->
-    <div class="fixed bottom-10 flex gap-6 z-50">
-        <button onclick="swipe('left')" class="w-14 h-14 bg-zinc-900 border-2 border-zinc-800 rounded-full flex items-center justify-center text-red-500 text-xl font-bold shadow-xl">✕</button>
-        <button onclick="swipe('right')" class="w-14 h-14 bg-zinc-900 border-2 border-zinc-800 rounded-full flex items-center justify-center text-green-400 text-xl font-bold shadow-xl">❤</button>
-    </div>
-
-    <script>
-        const cards = document.querySelectorAll('.swiping-card');
-        let currentCardIndex = cards.length - 1;
-
-        function swipe(direction) {
-            if (currentCardIndex < 0) return;
-            
-            const card = cards[currentCardIndex];
-            const xMove = direction === 'right' ? 500 : -500;
-            const rotate = direction === 'right' ? 20 : -20;
-            
-            card.style.transform = `translateX(${xMove}px) rotate(${rotate}deg)`;
-            card.style.opacity = '0';
-            card.style.pointerEvents = 'none';
-            
-            currentCardIndex--;
-        }
-
-        // Mode Switching Logic
-        const swipeBtn = document.getElementById('swipeMode');
-        const recruitBtn = document.getElementById('recruitMode');
-        const container = document.getElementById('app-container');
-
-        recruitBtn.addEventListener('click', () => {
-            recruitBtn.classList.add('bg-pink-600', 'text-white');
-            recruitBtn.classList.remove('text-zinc-400');
-            swipeBtn.classList.remove('bg-pink-600');
-            swipeBtn.classList.add('text-zinc-400');
-            
-            // Transition to List/Recruiter Mode
-            container.classList.add('overflow-y-auto');
-            document.querySelectorAll('.swiping-card').forEach(c => {
-                c.style.position = 'relative';
-                c.style.transform = 'none';
-                c.style.opacity = '1';
-                c.style.height = 'auto';
-                c.style.marginBottom = '20px';
-            });
-        });
-
-        swipeBtn.addEventListener('click', () => {
-             location.reload(); // Quick reset for prototype
-        });
-    </script>
+        pupil.style.transform = `translate(${x}px, ${y}px)`;
+      });
+    });
+  </script>
 </body>
 </html>
